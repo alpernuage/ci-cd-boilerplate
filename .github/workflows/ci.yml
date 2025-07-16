@@ -1,0 +1,13 @@
+name: Pipeline-CI
+on:
+  push:
+    branches: [ master ]
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+    continue-on-error: false
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v2
+      - name: LS
+        run: ls
