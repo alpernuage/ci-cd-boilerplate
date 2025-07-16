@@ -40,3 +40,11 @@ jobs:
         run: |
           composer require friendsofphp/php-cs-fixer
           ./vendor/bin/php-cs-fixer fix --dry-run
+
+      # PHP STAN
+      - name: PHP Stan
+        run: |
+          composer require phpstan/phpstan
+          composer require phpstan/extension-installer
+          composer require phpstan/phpstan-symfony
+          ./vendor/bin/phpstan analyse src --memory-limit 1G
