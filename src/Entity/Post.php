@@ -43,27 +43,27 @@ class Post
 
     #[ORM\Column(type: Types::STRING)]
     #[Assert\NotBlank]
-    private ?string $title = null;
+    private string $title;
 
-    #[ORM\Column(type: Types::STRING)]
+    #[ORM\Column(type: Types::STRING, nullable: true)]
     private ?string $slug = null;
 
     #[ORM\Column(type: Types::STRING)]
     #[Assert\NotBlank(message: 'post.blank_summary')]
     #[Assert\Length(max: 255)]
-    private ?string $summary = null;
+    private string $summary;
 
     #[ORM\Column(type: Types::TEXT)]
     #[Assert\NotBlank(message: 'post.blank_content')]
     #[Assert\Length(min: 10, minMessage: 'post.too_short_content')]
-    private ?string $content = null;
+    private string $content;
 
     #[ORM\Column]
     private \DateTimeImmutable $publishedAt;
 
     #[ORM\ManyToOne(targetEntity: User::class)]
     #[ORM\JoinColumn(nullable: false)]
-    private ?User $author = null;
+    private User $author;
 
     /**
      * @var Collection<int, Comment>
@@ -93,12 +93,12 @@ class Post
         return $this->id;
     }
 
-    public function getTitle(): ?string
+    public function getTitle(): string
     {
         return $this->title;
     }
 
-    public function setTitle(?string $title): void
+    public function setTitle(string $title): void
     {
         $this->title = $title;
     }
@@ -113,12 +113,12 @@ class Post
         $this->slug = $slug;
     }
 
-    public function getContent(): ?string
+    public function getContent(): string
     {
         return $this->content;
     }
 
-    public function setContent(?string $content): void
+    public function setContent(string $content): void
     {
         $this->content = $content;
     }
@@ -133,7 +133,7 @@ class Post
         $this->publishedAt = $publishedAt;
     }
 
-    public function getAuthor(): ?User
+    public function getAuthor(): User
     {
         return $this->author;
     }
@@ -165,12 +165,12 @@ class Post
         $this->comments->removeElement($comment);
     }
 
-    public function getSummary(): ?string
+    public function getSummary(): string
     {
         return $this->summary;
     }
 
-    public function setSummary(?string $summary): void
+    public function setSummary(string $summary): void
     {
         $this->summary = $summary;
     }
