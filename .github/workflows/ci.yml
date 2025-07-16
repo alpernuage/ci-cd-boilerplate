@@ -58,3 +58,7 @@ jobs:
         run: ./bin/console lint:container --no-debug
       - name: Lint Doctrine entities
         run: ./bin/console doctrine:schema:validate --skip-sync -vvv --no-interaction
+
+      # PHP Unit
+      - name: PHP Unit
+        run: ./vendor/bin/phpunit
